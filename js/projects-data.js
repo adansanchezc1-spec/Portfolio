@@ -40,8 +40,7 @@ const PROJECTS_DATA = [
     technologies: ["Python", "Pandas", "NumPy", "SciPy", "Matplotlib", "GeoPandas", "Leaflet.js", "BPMN 2.0", "Pytest"],
     links: {
       github: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen",
-      demo: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen/blob/main/reports/dashboard_geografico_sipta.html",
-      gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
+      demo: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen/blob/main/reports/dashboard_geografico_sipta.html"
     }
   },
   {
@@ -78,8 +77,7 @@ const PROJECTS_DATA = [
     technologies: ["Python", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter Notebook", "Regression Analysis"],
     links: {
       github: "https://github.com/adansanchezc1-spec/TelecomDemand_Prediction_UTokyo",
-      demo: "https://github.com/adansanchezc1-spec/TelecomDemand_Prediction_UTokyo/blob/main/notebooks/01_telecom_demand_prediction_cgi_utokyo.ipynb",
-      gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
+      demo: "https://github.com/adansanchezc1-spec/TelecomDemand_Prediction_UTokyo/blob/main/notebooks/01_telecom_demand_prediction_cgi_utokyo.ipynb"
     }
   },
   {
@@ -116,8 +114,7 @@ const PROJECTS_DATA = [
     technologies: ["Python 3.13", "Tkinter GUI", "Pytest", "BPMN 2.0", "SOLID", "Patrones GoF/GRASP", "PEP 8", "JSON/CSV"],
     links: {
       github: "https://github.com/adansanchezc1-spec/ProyectoDataWrangling",
-      demo: "https://github.com/adansanchezc1-spec/ProyectoDataWrangling#readme",
-      gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
+      demo: "https://github.com/adansanchezc1-spec/ProyectoDataWrangling#readme"
     }
   },
   {
@@ -153,8 +150,7 @@ const PROJECTS_DATA = [
     technologies: ["Java 17+", "JUnit 5", "OOP Avanzada", "Patrones GoF", "SOLID", "Git Flow", "Clean Architecture"],
     links: {
       github: "https://github.com/adansanchezc1-spec/TeleVentas",
-      demo: "https://github.com/adansanchezc1-spec/GestionMuseo",
-      gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
+      demo: "https://github.com/adansanchezc1-spec/GestionMuseo"
     }
   },
   {
@@ -190,9 +186,7 @@ const PROJECTS_DATA = [
     },
     technologies: ["Python", "SciPy (scipy.stats)", "R", "Pandas", "NumPy", "Matplotlib", "LaTeX", "CRISP-DM"],
     links: {
-      github: "https://github.com/adansanchezc1-spec",
-      demo: "https://drive.google.com/drive/folders/1imjPbaqELpTkmmQT6Kbd3ZkOxSzNmRhj?usp=drive_link",
-      gdrive: "https://drive.google.com/drive/folders/1imjPbaqELpTkmmQT6Kbd3ZkOxSzNmRhj?usp=drive_link"
+      github: "https://github.com/adansanchezc1-spec"
     }
   },
   {
@@ -228,9 +222,7 @@ const PROJECTS_DATA = [
     },
     technologies: ["Microsoft Power BI", "DAX", "Power Query (M)", "Excel Avanzado", "Modelado Dimensional", "Star Schema"],
     links: {
-      github: "https://github.com/adansanchezc1-spec/PowerBI_Analytics_Solutions",
-      demo: "#",
-      gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
+      github: "https://github.com/adansanchezc1-spec/PowerBI_Analytics_Solutions"
     }
   }
 ];

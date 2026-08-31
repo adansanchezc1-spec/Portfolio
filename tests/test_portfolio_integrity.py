@@ -57,21 +57,25 @@ class TestPortfolioIntegrity(unittest.TestCase):
         for sec in required_sections:
             self.assertIn(f'id="{sec}"', content, f"Sección #{sec} no encontrada en index.html")
 
+    def test_no_google_drive_links_in_portfolio(self):
+        """Valida que no existan enlaces a Google Drive en index.html ni en projects-data.js."""
+        with open(INDEX_HTML, "r", encoding="utf-8") as f:
+            html_content = f.read()
+        self.assertNotIn("drive.google.com", html_content, "index.html aún contiene enlaces a Google Drive")
+
+        with open(PROJECTS_DATA_JS, "r", encoding="utf-8") as f:
+            js_content = f.read()
+        self.assertNotIn("drive.google.com", js_content, "projects-data.js aún contiene enlaces a Google Drive")
+
     def test_projects_data_js_integrity(self):
-        """Valida que projects-data.js contenga los proyectos clave y los 4 artículos científicos."""
+        """Valida que projects-data.js contenga los proyectos clave y configuraciones."""
         self.assertTrue(os.path.exists(PROJECTS_DATA_JS), "js/projects-data.js no existe")
         with open(PROJECTS_DATA_JS, "r", encoding="utf-8") as f:
             content = f.read()
 
         self.assertIn("PROJECTS_DATA", content)
-        self.assertIn("RESEARCH_PAPERS_DATA", content)
         self.assertIn("SKILLS_DATA", content)
-
-        # Validar presencia de los 4 artículos
-        self.assertIn("paper-ipt-ocde", content)
-        self.assertIn("paper-moran-lisa", content)
-        self.assertIn("paper-brechas-salud-educacion", content)
-        self.assertIn("paper-gobernanza-fdl-alertas", content)
+        self.assertIn("CODE_SNIPPETS_DATA", content)
 
         # Validar presencia de proyectos insignia
         self.assertIn("sipta-datajam-alcaldia", content)
@@ -88,12 +92,11 @@ class TestPortfolioIntegrity(unittest.TestCase):
             "initNavbar",
             "renderProjects",
             "renderSkillsTab",
-            "renderResearchPapers",
             "initSiptaViewer",
             "openProjectModal",
-            "copyBibtex",
             "copyEmail",
-            "showToast"
+            "showToast",
+            "initCodeSnippetViewer"
         ]
         for fn in expected_functions:
             self.assertIn(fn, content, f"Función controladora {fn} no encontrada en app.js")
