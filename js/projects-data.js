@@ -406,3 +406,209 @@ const RESEARCH_PAPERS_DATA = [
   }
 ];
 
+/**
+ * Catálogo de Snippets de Código Limpio (Demostración de Arquitectura & SOLID)
+ */
+const CODE_SNIPPETS_DATA = {
+  python: {
+    language: "Python (PEP 8 & Clean Pipeline)",
+    fileName: "pipeline_clean_architecture.py",
+    badge: "Python 3.11+ · Typing & SciPy",
+    description: "Procesamiento de datos desacoplado con generadores, tipado estático estricto, manejo de excepciones de dominio e inferencia estadística con scipy.stats.",
+    code: `from typing import Iterable, List, Optional
+import numpy as np
+import pandas as pd
+from scipy import stats
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+class DomainDataError(Exception):
+    """Excepción de dominio para anomalías en el pipeline de datos."""
+    pass
+
+class StatisticalAuditor:
+    """Auditor cuantitativo bajo estándares ISO 25010 y estadística no paramétrica."""
+    
+    @staticmethod
+    def test_normality(data: np.ndarray, alpha: float = 0.05) -> dict:
+        """Ejecuta prueba Shapiro-Wilk para validar si aplica modelado paramétrico."""
+        if len(data) < 3:
+            raise DomainDataError("Muestra insuficiente para contraste de hipótesis (n < 3)")
+            
+        stat, p_value = stats.shapiro(data)
+        is_normal = bool(p_value > alpha)
+        
+        logging.info(f"Shapiro-Wilk W={stat:.4f}, p={p_value:.4e} -> Normalidad: {is_normal}")
+        return {
+            "statistic": float(stat),
+            "p_value": float(p_value),
+            "is_normal": is_normal,
+            "decision": "Estadística Paramétrica" if is_normal else "Estadística No Paramétrica (Mann-Whitney / Kruskal)"
+        }
+
+class StreamETLPipeline:
+    """Pipeline generador de bajo consumo de memoria para grandes volúmenes de datos."""
+    
+    def __init__(self, chunk_size: int = 10000) -> None:
+        self.chunk_size = chunk_size
+
+    def transform_stream(self, records: Iterable[dict]) -> Iterable[dict]:
+        for record in records:
+            # Regla de Negocio: Normalización y saneamiento de estratos
+            if record.get("estrato") is not None and 1 <= int(record["estrato"]) <= 6:
+                record["estrato"] = int(record["estrato"])
+                record["precio_m2"] = record["precio"] / max(record.get("area", 1.0), 1.0)
+                yield record
+            else:
+                logging.warning(f"Registro descartado por inconsistencia de estrato: {record.get('id')}")`
+  },
+
+  java: {
+    language: "Java (POO Avanzada & SOLID)",
+    fileName: "OrderProcessingService.java",
+    badge: "Java 17+ · Clean Architecture & DI",
+    description: "Capa de aplicación empresarial con Inversión de Dependencias (DIP), Segregación de Interfaces (ISP) y validaciones de dominio.",
+    code: `package com.adansanchez.portfolio.domain.service;
+
+import com.adansanchez.portfolio.domain.model.Order;
+import com.adansanchez.portfolio.domain.model.OrderStatus;
+import com.adansanchez.portfolio.domain.repository.OrderRepository;
+import com.adansanchez.portfolio.domain.exception.InvalidOrderStateException;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.Optional;
+
+/**
+ * Servicio de Dominio que implementa Single Responsibility y Dependency Inversion.
+ */
+public class OrderProcessingService implements IOrderProcessingUseCase {
+
+    private final OrderRepository orderRepository;
+    private final INotificationService notificationService;
+
+    // Inyección de dependencias por constructor (DIP)
+    public OrderProcessingService(OrderRepository orderRepository, INotificationService notificationService) {
+        this.orderRepository = Objects.requireNonNull(orderRepository, "orderRepository must not be null");
+        this.notificationService = Objects.requireNonNull(notificationService, "notificationService must not be null");
+    }
+
+    @Override
+    public Order processOrder(Long orderId) {
+        Order order = orderRepository.findById(orderId)
+            .orElseThrow(() -> new InvalidOrderStateException("Order not found with ID: " + orderId));
+
+        if (!order.canBeProcessed()) {
+            throw new InvalidOrderStateException("Order " + orderId + " cannot be processed in status " + order.getStatus());
+        }
+
+        order.setStatus(OrderStatus.PROCESSED);
+        order.setProcessedAt(LocalDateTime.now());
+
+        Order savedOrder = orderRepository.save(order);
+        notificationService.notifyCustomer(savedOrder);
+        
+        return savedOrder;
+    }
+}`
+  },
+
+  r: {
+    language: "R (Inferencia Estadística & Visualización)",
+    fileName: "hypothesis_testing_analysis.R",
+    badge: "R 4.3+ · Tidyverse & Inferencia",
+    description: "Análisis inferencial formal y contraste de hipótesis no paramétricas (Kruskal-Wallis y Wilcoxon Rank-Sum) con tamaño de efecto.",
+    code: `library(tidyverse)
+library(rstatix)
+library(ggplot2)
+
+# Carga y estructuración reproducible de microdatos territoriales
+evaluar_hipotesis_laboral <- function(dataset_path) {
+  df <- read_csv(dataset_path, show_col_types = FALSE) %>%
+    filter(!is.na(tasa_ejecucion), estrato %in% 1:6) %>%
+    mutate(estrato = as.factor(estrato))
+  
+  # 1. Contraste de Normalidad
+  shapiro_res <- df %>%
+    group_by(vigencia) %>%
+    shapiro_test(tasa_ejecucion)
+  
+  # 2. Prueba No Paramétrica Kruskal-Wallis entre Vigencias
+  kruskal_res <- df %>%
+    kruskal_test(tasa_ejecucion ~ vigencia)
+  
+  # 3. Tamaño del Efecto (Epsilon al Cuadrado)
+  eff_size <- df %>%
+    kruskal_effsize(tasa_ejecucion ~ vigencia)
+  
+  message(sprintf("Kruskal-Wallis H=%.2f, p=%.4e, Magnitud del Efecto: %s", 
+                  kruskal_res$statistic, kruskal_res$p, eff_size$magnitude))
+                  
+  return(list(shapiro = shapiro_res, kruskal = kruskal_res, effect = eff_size))
+}`
+  },
+
+  dax: {
+    language: "DAX (Modelos Tabulares & Time Intelligence)",
+    fileName: "core_financial_kpis.dax",
+    badge: "Power BI · Star Schema Modeling",
+    description: "Medidas DAX optimizadas con variables de contexto, manejo estricto de filtros y cálculos de variación interanual (YoY).",
+    code: `// Medida 1: Margen Operativo Seguro ante División por Cero
+Margen_Operativo_Pct = 
+VAR TotalIngresos = [Total_Ingresos_Reales]
+VAR TotalCostos = [Total_Costos_Operativos]
+VAR UtilidadOperativa = TotalIngresos - TotalCostos
+RETURN
+    DIVIDE(
+        UtilidadOperativa,
+        TotalIngresos,
+        0.00
+    )
+
+// Medida 2: Variación Interanual con Time Intelligence (YoY Growth)
+Ventas_YoY_Crecimiento = 
+VAR VentasActuales = [Total_Ventas]
+VAR VentasAnoAnterior = 
+    CALCULATE(
+        [Total_Ventas],
+        SAMEPERIODLASTYEAR('Dim_Calendario'[Fecha])
+    )
+RETURN
+    DIVIDE(
+        VentasActuales - VentasAnoAnterior,
+        VentasAnoAnterior,
+        BLANK()
+    )`
+  },
+
+  bpmn: {
+    language: "BPMN 2.0 (Ingeniería de Procesos & Flujo)",
+    fileName: "process_gateways_contract.json",
+    badge: "BPMN 2.0 · Compuertas XOR & SLA",
+    description: "Especificación formal de compuertas lógicas de decisión (XOR), criterios de enrutamiento y políticas de tolerancia a fallos.",
+    code: `{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "process_id": "PRC-ETL-TERRITORIAL-BOGOTA-2026",
+  "standard": "BPMN 2.0 / ISO/IEC 25010",
+  "gateways": [
+    {
+      "id": "GW-01-EXTRACTION",
+      "type": "Exclusive_XOR",
+      "condition": "file_integrity_hash == expected_sha256 AND file_readable == true",
+      "on_pass": "PROCEED_TO_SCHEMA_VALIDATION",
+      "on_reject": "ROUTE_TO_CORRUPTED_SOURCE_LOG"
+    },
+    {
+      "id": "GW-02-CLEANING-MDM",
+      "type": "Exclusive_XOR",
+      "condition": "null_ratio <= 0.05 AND outlier_iqr_flag == false",
+      "on_pass": "LOAD_INTO_MASTER_DATA_STORAGE",
+      "on_reject": "ROUTE_TO_MANUAL_AUDIT_QUEUE"
+    }
+  ]
+}`
+  }
+};
+
+

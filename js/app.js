@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initScrollAnimations();
   initSiptaViewer();
+  initCodeSnippetViewer();
 });
 
 /* --------------------------------------------------------------------------
@@ -553,5 +554,58 @@ function initSiptaViewer() {
     });
   });
 }
+
+/* --------------------------------------------------------------------------
+   9. INTERACTIVE CLEAN CODE TERMINAL (MULTILANGUAGE EXPLORER)
+   -------------------------------------------------------------------------- */
+let currentSnippetKey = 'python';
+
+function initCodeSnippetViewer() {
+  const tabButtons = document.querySelectorAll('.code-tab-btn');
+  const codePre = document.getElementById('activeCodeBlock');
+  const fileNameEl = document.getElementById('codeFileName');
+  const badgeEl = document.getElementById('codeLangBadge');
+  const descEl = document.getElementById('codeDescription');
+  const copyBtn = document.getElementById('copyCodeBtn');
+
+  if (!tabButtons.length || !codePre) return;
+
+  function loadSnippet(key) {
+    const data = CODE_SNIPPETS_DATA[key];
+    if (!data) return;
+    currentSnippetKey = key;
+
+    if (codePre) codePre.textContent = data.code;
+    if (fileNameEl) fileNameEl.textContent = data.fileName;
+    if (badgeEl) badgeEl.textContent = data.badge;
+    if (descEl) descEl.textContent = data.description;
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const key = btn.getAttribute('data-snippet');
+      loadSnippet(key);
+    });
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const data = CODE_SNIPPETS_DATA[currentSnippetKey];
+      if (data && data.code) {
+        navigator.clipboard.writeText(data.code).then(() => {
+          showToast(`¡Código de ${data.fileName} copiado al portapapeles!`);
+        }).catch(() => {
+          showToast(`Código copiado.`);
+        });
+      }
+    });
+  }
+
+  // Initial load
+  loadSnippet('python');
+}
+
 
 

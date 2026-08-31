@@ -336,6 +336,76 @@
             </div>
           </div>
         </div>
+
+        <!-- CLEAN CODE TERMINAL & PLAYGROUND -->
+        <div class="clean-code-box" id="terminal-codigo-limpio">
+          <div class="code-terminal-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+              <span style="width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+              <span style="width: 12px; height: 12px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+              <span class="font-mono" style="font-size: 0.8rem; color: var(--text-dim); margin-left: 8px;">clean_code_explorer.sh</span>
+            </div>
+
+            <!-- Language Switcher Tabs -->
+            <div class="code-tab-nav" role="tablist" aria-label="Lenguajes de Código">
+              <button class="code-tab-btn active" data-snippet="python" role="tab">Python (SciPy/ETL)</button>
+              <button class="code-tab-btn" data-snippet="java" role="tab">Java (SOLID/POO)</button>
+              <button class="code-tab-btn" data-snippet="r" role="tab">R (Inferencia)</button>
+              <button class="code-tab-btn" data-snippet="dax" role="tab">DAX (Power BI)</button>
+              <button class="code-tab-btn" data-snippet="bpmn" role="tab">BPMN 2.0 (Procesos)</button>
+            </div>
+          </div>
+
+          <div class="code-editor-body">
+            <div class="code-info-bar">
+              <div>
+                <span class="font-mono" id="codeFileName" style="font-weight: 600; color: var(--text-main); font-size: 0.92rem;">pipeline_clean_architecture.py</span>
+                <span class="badge badge-cyan" id="codeLangBadge" style="margin-left: 8px; font-size: 0.72rem;">Python 3.11+ · Typing & SciPy</span>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="copyCodeBtn" style="font-size: 0.75rem; padding: 4px 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                Copiar Snippet
+              </button>
+            </div>
+
+            <p id="codeDescription" style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5;">
+              Procesamiento de datos desacoplado con generadores, tipado estático estricto, manejo de excepciones de dominio e inferencia estadística con scipy.stats.
+            </p>
+
+            <pre class="code-terminal-pre"><code id="activeCodeBlock">from typing import Iterable, List, Optional
+import numpy as np
+import pandas as pd
+from scipy import stats
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+
+class DomainDataError(Exception):
+    """Excepción de dominio para anomalías en el pipeline de datos."""
+    pass
+
+class StatisticalAuditor:
+    """Auditor cuantitativo bajo estándares ISO 25010 y estadística no paramétrica."""
+    
+    @staticmethod
+    def test_normality(data: np.ndarray, alpha: float = 0.05) -> dict:
+        """Ejecuta prueba Shapiro-Wilk para validar si aplica modelado paramétrico."""
+        if len(data) < 3:
+            raise DomainDataError("Muestra insuficiente para contraste de hipótesis (n < 3)")
+            
+        stat, p_value = stats.shapiro(data)
+        is_normal = bool(p_value > alpha)
+        
+        logging.info(f"Shapiro-Wilk W={stat:.4f}, p={p_value:.4e} -> Normalidad: {is_normal}")
+        return {
+            "statistic": float(stat),
+            "p_value": float(p_value),
+            "is_normal": is_normal,
+            "decision": "Estadística Paramétrica" if is_normal else "Estadística No Paramétrica (Mann-Whitney / Kruskal)"
+        }</code></pre>
+          </div>
+        </div>
       </div>
     </section>
 
