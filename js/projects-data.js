@@ -77,8 +77,8 @@ const PROJECTS_DATA = [
     },
     technologies: ["Python", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Jupyter Notebook", "Regression Analysis"],
     links: {
-      github: "https://github.com/adansanchezc1-spec",
-      demo: "#",
+      github: "https://github.com/adansanchezc1-spec/TelecomDemand_Prediction_UTokyo",
+      demo: "https://github.com/adansanchezc1-spec/TelecomDemand_Prediction_UTokyo/blob/main/notebooks/01_telecom_demand_prediction_cgi_utokyo.ipynb",
       gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
     }
   },
@@ -228,7 +228,7 @@ const PROJECTS_DATA = [
     },
     technologies: ["Microsoft Power BI", "DAX", "Power Query (M)", "Excel Avanzado", "Modelado Dimensional", "Star Schema"],
     links: {
-      github: "https://github.com/adansanchezc1-spec",
+      github: "https://github.com/adansanchezc1-spec/PowerBI_Analytics_Solutions",
       demo: "#",
       gdrive: "https://drive.google.com/drive/folders/1mxz2S2NAEqMt575PpRseiNNZiL_5scAJ?usp=sharing"
     }
@@ -307,7 +307,7 @@ const STATS_RESEARCH_DATA = [
   },
   {
     test: "Mann-Whitney U",
-    variable: "General vs. Campesena",
+    variable: "General vs. Campesina",
     statistic: "U = 621.0",
     pValue: "p = 0.060",
     conclusion: "Paridad estadística (p > 0.05). Demuestra equidad en la atención a territorios rurales.",
