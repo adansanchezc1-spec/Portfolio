@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjects('all');
   renderSkillsTab('coreLanguages');
   renderStatsTable();
+  renderResearchPapers();
   initFilterButtons();
   initSkillsTabs();
   initModalListeners();
@@ -228,6 +229,90 @@ function renderStatsTable() {
       <td style="color: var(--text-muted); font-size: 0.88rem;">${row.conclusion}</td>
     `;
     tbody.appendChild(tr);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   4.1 RESEARCH PAPERS RENDERER (DATAJAM SCIENTIFIC PAPERS)
+   -------------------------------------------------------------------------- */
+function renderResearchPapers() {
+  const container = document.getElementById('researchPapersGrid');
+  if (!container || !RESEARCH_PAPERS_DATA) return;
+
+  container.innerHTML = '';
+
+  RESEARCH_PAPERS_DATA.forEach(paper => {
+    const card = document.createElement('article');
+    card.className = 'open-research-card';
+    card.style.background = 'rgba(15, 23, 42, 0.75)';
+
+    const highlightsHtml = paper.highlights.map(h => `
+      <span class="tech-tag" style="background: rgba(6, 182, 212, 0.1); color: var(--color-primary-light); font-size: 0.76rem;">${h}</span>
+    `).join('');
+
+    const formatsHtml = paper.formats.map(f => `
+      <span style="display: inline-block; padding: 2px 6px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);">${f}</span>
+    `).join(' ');
+
+    card.innerHTML = `
+      <div>
+        <div class="research-tag-row">
+          <span class="badge badge-cyan">${paper.paperNumber} · ${paper.badge}</span>
+          <span class="font-mono" style="font-size: 0.78rem; color: var(--text-dim);">${paper.date}</span>
+        </div>
+        <h4 class="research-card-title" style="font-size: 1.18rem; margin-top: 6px;">${paper.title}</h4>
+        <p style="font-size: 0.84rem; color: var(--color-primary-light); margin-bottom: 10px; font-style: italic;">
+          ${paper.subtitle}
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 12px;">
+          <strong>Revista / Foro:</strong> ${paper.journal} · <span class="font-mono" style="color: #a5f3fc;">DOI: ${paper.doi}</span>
+        </p>
+        <p class="research-card-desc" style="font-size: 0.88rem; line-height: 1.55;">
+          ${paper.abstract}
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0;">
+          ${highlightsHtml}
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 14px; margin-top: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+          <div style="display: flex; gap: 4px; align-items: center;">
+            <span style="font-size: 0.75rem; color: var(--text-dim);">Formatos:</span>
+            ${formatsHtml}
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="copyBibtex('${paper.id}')" style="font-size: 0.75rem; padding: 4px 10px;">
+            Copiar BibTeX
+          </button>
+        </div>
+        <a href="${paper.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="width: 100%; justify-content: center;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          Ver Documentos en GitHub
+        </a>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function copyBibtex(paperId) {
+  const paper = RESEARCH_PAPERS_DATA.find(p => p.id === paperId);
+  if (!paper) return;
+
+  const bibtex = `@article{Sanchez2026_${paperId},
+  author = {S{\\'a}nchez Cubillos, Ad{\\'a}n Yesid},
+  title = {${paper.title}},
+  journal = {${paper.journal}},
+  year = {2026},
+  doi = {${paper.doi}},
+  url = {${paper.githubUrl}}
+}`;
+
+  navigator.clipboard.writeText(bibtex).then(() => {
+    showToast(`¡Cita BibTeX de ${paper.paperNumber} copiada al portapapeles!`);
+  }).catch(() => {
+    showToast(`Cita BibTeX copiada.`);
   });
 }
 

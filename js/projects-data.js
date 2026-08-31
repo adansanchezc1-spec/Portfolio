@@ -322,3 +322,87 @@ const STATS_RESEARCH_DATA = [
     badge: "Inclusión Social"
   }
 ];
+
+/**
+ * Catálogo Oficial de Artículos de Investigación Científica (DataJam Bogotá)
+ * Fuente: C:\Users\ADAN\OneDrive\Documentos\DataJam\investigación
+ */
+const RESEARCH_PAPERS_DATA = [
+  {
+    id: "paper-ipt-ocde",
+    paperNumber: "Paper 01",
+    title: "Construcción, Validación Econométrica y Auditoría de Sensibilidad del IPT bajo el Marco OCDE/JRC",
+    subtitle: "Un Enfoque Multidimensional de Indicadores Compuestos y Agregación No Compensatoria en Bogotá D.C.",
+    journal: "Journal of Composite Indicators and Territorial Policy",
+    date: "Agosto 2026",
+    doi: "10.1016/j.jcompind.2026.100142",
+    badge: "Marco OCDE/JRC",
+    abstract: "Metodología formal para la construcción del Índice de Priorización Territorial (IPT) en Bogotá D.C. mediante normalización Min-Max por polaridad, agregación no compensatoria, verificación VIF = 3.21 e intervalos de confianza al 95% con Bootstrap Dirichlet (B = 1.000).",
+    highlights: [
+      "VIF = 3.21 < 10.0 (Sin Multicolinealidad)",
+      "Bootstrap B = 1.000 Réplicas (IC 95%)",
+      "+1.04M Microdatos PUA SDIS",
+      "Agregación Lineal y Geométrica"
+    ],
+    formats: ["PDF", "LaTeX", "Typst", "Markdown", "BibTeX"],
+    githubUrl: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen"
+  },
+  {
+    id: "paper-moran-lisa",
+    paperNumber: "Paper 02",
+    title: "Autocorrelación Espacial y Vulnerabilidad Urbana: Análisis del Clúster Suroriental de Bogotá (LISA)",
+    subtitle: "Evidencia Geoespacial de Dependencia Territorial y Efectos de Desbordamiento Interlocal",
+    journal: "Applied Geography & Spatial Econometrics",
+    date: "Agosto 2026",
+    doi: "10.1016/j.apgeog.2026.102890",
+    badge: "Econometría Espacial",
+    abstract: "Evidencia geoespacial cuantitativa de dependencia territorial en megaciudades latinoamericanas. Demostración de autocorrelación espacial global significativa (Moran's I = 0.412, p = 0.008) y detección de clústeres críticos High-High en Usme, Ciudad Bolívar y San Cristóbal.",
+    highlights: [
+      "Moran's I = 0.412 (p = 0.008)",
+      "Clústeres LISA High-High",
+      "Matriz de Contigüidad Queen",
+      "PySAL & GeoPandas Spatial Joins"
+    ],
+    formats: ["PDF", "LaTeX", "Typst", "Markdown", "BibTeX"],
+    githubUrl: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen"
+  },
+  {
+    id: "paper-brechas-salud-educacion",
+    paperNumber: "Paper 03",
+    title: "Asimetría Estructural y Distribución de Equipamientos: Brechas en Salud (REPS) y Educación (SED)",
+    subtitle: "Un Análisis Espacial Multifuente de Georreferenciación y Demanda Per Cápita en 20 Localidades",
+    journal: "International Journal for Equity in Health & Urban Systems",
+    date: "Agosto 2026",
+    doi: "10.1186/s12939-026-02451-x",
+    badge: "Equidad Social",
+    abstract: "Evaluación empírica y georreferenciada de la oferta hospitalaria (REPS 2024) y educativa (SED 2024) frente a la demanda real per cápita en las 20 localidades de Bogotá, evidenciando curvas de Lorenz con severa desigualdad interzonal.",
+    highlights: [
+      "REPS + SED + PUA SDIS Integrados",
+      "Camas Hospitalarias per Cápita",
+      "Curvas de Lorenz de Desigualdad",
+      "Déficits Críticos en Periferia"
+    ],
+    formats: ["PDF", "LaTeX", "Typst", "Markdown", "BibTeX"],
+    githubUrl: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen"
+  },
+  {
+    id: "paper-gobernanza-fdl-alertas",
+    paperNumber: "Paper 04",
+    title: "Gobernanza de Datos y Optimización del Gasto Local: Sistema de Alertas Tempranas SIPTA y Fondos FDL",
+    subtitle: "Un Marco Integrado de Calidad ISO/IEC 25010, DAMA-BOK y Toma de Decisiones Basada en Evidencia",
+    journal: "Government Information Quarterly & Public Finance Review",
+    date: "Agosto 2026",
+    doi: "10.1016/j.giq.2026.101980",
+    badge: "Gobernanza DAMA-BOK",
+    abstract: "Marco integral de calidad de datos bajo ISO/IEC 25010 y DAMA-BOK para Fondos de Desarrollo Local (FDL). Demostración empírica de desajustes entre presupuesto ejecutado y vulnerabilidad territorial, proponiendo la matriz predictiva de alertas SIPTA.",
+    highlights: [
+      "Calidad de Datos ISO/IEC 25010",
+      "Gobernanza bajo DAMA-BOK",
+      "Matriz de Alertas Tempranas SIPTA",
+      "Reorientación Presupuestal Basada en Evidencia"
+    ],
+    formats: ["PDF", "LaTeX", "Typst", "Markdown", "BibTeX"],
+    githubUrl: "https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen"
+  }
+];
+
