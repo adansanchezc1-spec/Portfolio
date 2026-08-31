@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModalListeners();
   initContactForm();
   initScrollAnimations();
+  initBpmnViewer();
 });
 
 /* --------------------------------------------------------------------------
@@ -434,3 +435,53 @@ function initScrollAnimations() {
     observer.observe(heroVisual);
   }
 }
+
+/* --------------------------------------------------------------------------
+   8. INTERACTIVE BPMN VISUALIZER (DATA WRANGLING VIEWER)
+   -------------------------------------------------------------------------- */
+const BPMN_GATEWAY_DETAILS = {
+  g1: `[BPMN 2.0 GATEWAY 1: EXTRACCIÓN Y VALIDACIÓN DE FUENTES]
+-------------------------------------------------------------
+* Archivos Soportados: CSV, XLSX, JSON (Inmuebles Bogotá D.C.)
+* Verificación: Integridad física, formato de lectura y permisos.
+* Regla XOR: Si el archivo está corrupto -> Rechazo inmediato con log estructurado.
+* Salida: Raw Storage Buffer validado (0 fallos de extracción).`,
+
+  g2: `[BPMN 2.0 GATEWAY 2: ESTRUCTURA Y CONTRATO DE ESQUEMA]
+-------------------------------------------------------------
+* Columnas Requeridas: 'precio', 'area', 'estrato', 'habitaciones', 'banos', 'zona'
+* Regla XOR: Comprobación de tipos (float/int). Si faltan columnas maestras -> Enrutamiento a Rejection Log.
+* Salida: DataFrame estructurado con esquema homologado.`,
+
+  g3: `[BPMN 2.0 GATEWAY 3: LIMPIEZA, NORMALIZACIÓN Y DEDUPLICACIÓN]
+-------------------------------------------------------------
+* Tratamiento de Nulos: Imputación no paramétrica por medianas robustas.
+* Filtros de Negocio: Estrato en rango válido [1 - 6], áreas positivas (> 10 m2).
+* Deduplicación: Algoritmo de hash multidimensional (0 registros duplicados).
+* Salida: Dataset saneado bajo calidad ISO/IEC 25010.`,
+
+  g4: `[BPMN 2.0 GATEWAY 4: CALIDAD SEMÁNTICA & FEATURE ENGINEERING]
+-------------------------------------------------------------
+* Features Generadas: 'precio_unitario' ($/m2), 'puntaje_entorno', 'densidad_comercial'.
+* Regla XOR: Detección de outliers mediante rango intercuartílico (IQR).
+* Persistencia: Carga automatizada a Tabla Maestra (MDM) + Notificaciones decoradas.
+* Tests Unitarios: 46 pruebas en Pytest ejecutadas exitosamente (100% passed).`
+};
+
+function initBpmnViewer() {
+  const cards = document.querySelectorAll('.bpmn-gateway-card');
+  const preview = document.getElementById('viewerTerminalPreview');
+  if (!cards.length || !preview) return;
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const gatewayKey = card.getAttribute('data-gateway');
+      if (BPMN_GATEWAY_DETAILS[gatewayKey]) {
+        preview.textContent = BPMN_GATEWAY_DETAILS[gatewayKey];
+      }
+    });
+  });
+}
+

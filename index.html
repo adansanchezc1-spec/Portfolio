@@ -341,6 +341,133 @@
           </tbody>
         </table>
       </div>
+
+      <!-- VISOR INTERACTIVO: PIPELINE DATA WRANGLING & BPMN 2.0 -->
+      <div class="wrangling-viewer-box" id="visor-data-wrangling">
+        <div class="viewer-header-bar">
+          <div>
+            <span class="badge badge-cyan">Visor de Arquitectura & Pipeline</span>
+            <h3 style="margin-top: 6px; font-size: 1.4rem;">Sistema Data Wrangling — Flujo de Decisión BPMN 2.0</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Inspecciona interactivamente cada compuerta lógica (XOR) del pipeline ETL inmobiliario en Python.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="openProjectModal('data-wrangling-bogota')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+              Ficha Técnica Completa
+            </button>
+            <a href="https://github.com/adansanchezc1-spec/ProyectoDataWrangling" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              Ver Repositorio GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Gateway Track -->
+        <div class="bpmn-interactive-track" role="tablist">
+          <div class="bpmn-gateway-card active" data-gateway="g1" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Gateway 1</span>
+            <h4 class="gateway-title">Extracción de Fuentes</h4>
+            <p class="gateway-detail-text">Ingesta multi-formato (CSV, XLSX, JSON) y chequeo de permisos.</p>
+          </div>
+
+          <div class="bpmn-gateway-card" data-gateway="g2" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Gateway 2</span>
+            <h4 class="gateway-title">Contrato de Esquema</h4>
+            <p class="gateway-detail-text">Validación de columnas obligatorias y tipado estricto.</p>
+          </div>
+
+          <div class="bpmn-gateway-card" data-gateway="g3" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Gateway 3</span>
+            <h4 class="gateway-title">Limpieza & Deduplicación</h4>
+            <p class="gateway-detail-text">Imputación por medianas, estrato [1-6] y hash único.</p>
+          </div>
+
+          <div class="bpmn-gateway-card" data-gateway="g4" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Gateway 4</span>
+            <h4 class="gateway-title">Calidad & Persistencia</h4>
+            <p class="gateway-detail-text">Feature engineering temporal y carga a Master Data (MDM).</p>
+          </div>
+        </div>
+
+        <!-- Dynamic Terminal Simulation -->
+        <div class="viewer-terminal-preview" id="viewerTerminalPreview">
+[BPMN 2.0 GATEWAY 1: EXTRACCIÓN Y VALIDACIÓN DE FUENTES]
+-------------------------------------------------------------
+* Archivos Soportados: CSV, XLSX, JSON (Inmuebles Bogotá D.C.)
+* Verificación: Integridad física, formato de lectura y permisos.
+* Regla XOR: Si el archivo está corrupto -> Rechazo inmediato con log estructurado.
+* Salida: Raw Storage Buffer validado (0 fallos de extracción).
+        </div>
+      </div>
+
+      <!-- ESPACIO ABIERTO DE INVESTIGACIÓN CIENTÍFICA -->
+      <div class="open-research-container">
+        <div class="open-research-header">
+          <div>
+            <span class="badge badge-emerald">Líneas de Investigación Abiertas</span>
+            <h3 style="margin-top: 6px; font-size: 1.4rem;">Espacio Abierto para Colaboración & Extensión Científica</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
+              Propuestas metodológicas en curso y temas abiertos para coinvestigación aplicada y desarrollo conjunto.
+            </p>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="copyEmail()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Proponer Colaboración
+          </button>
+        </div>
+
+        <div class="open-research-grid">
+          <div class="open-research-card">
+            <div>
+              <div class="research-tag-row">
+                <span class="badge badge-cyan" style="font-size: 0.72rem;">En Curso</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: var(--text-dim);">SciPy · EconML</span>
+              </div>
+              <h4 class="research-card-title">Inferencia Causal & Mercado Laboral</h4>
+              <p class="research-card-desc">
+                Extensión del análisis empírico APE hacia modelos de inferencia causal (Double Machine Learning y DoWhy) para estimar el efecto neto de programas de empleo en municipios rurales.
+              </p>
+            </div>
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 12px; font-size: 0.82rem; color: var(--color-primary-light);">
+              ● Objetivo: Publicación de Working Paper 2026
+            </div>
+          </div>
+
+          <div class="open-research-card">
+            <div>
+              <div class="research-tag-row">
+                <span class="badge badge-cyan" style="font-size: 0.72rem;">Propuesta</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: var(--text-dim);">PySAL · Moran's I</span>
+              </div>
+              <h4 class="research-card-title">Redes Espaciales & Convergencia Zonal</h4>
+              <p class="research-card-desc">
+                Modelado de autocorrelación espacial bivariada entre índices de vulnerabilidad social y velocidad de colocación de empleo a escala UPZ y veredal en Cundinamarca.
+              </p>
+            </div>
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 12px; font-size: 0.82rem; color: var(--color-primary-light);">
+              ● Objetivo: Validación de Métricas Territoriales
+            </div>
+          </div>
+
+          <div class="open-research-card">
+            <div>
+              <div class="research-tag-row">
+                <span class="badge badge-cyan" style="font-size: 0.72rem;">Gobernanza</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: var(--text-dim);">DAMA-BOK · ISO 25010</span>
+              </div>
+              <h4 class="research-card-title">Calidad de Datos en Microdatos Públicos</h4>
+              <p class="research-card-desc">
+                Marco sistemático de auditoría y saneamiento automatizado para registros administrativos con compuertas de decisión reproducibles en Python.
+              </p>
+            </div>
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 12px; font-size: 0.82rem; color: var(--color-primary-light);">
+              ● Objetivo: Framework de Código Abierto
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 6. PDCO METHODOLOGY SECTION -->
