@@ -1,9 +1,9 @@
 {
   "project": "Adan-Sanchez-Portfolio-IHC",
   "version": "1.1.0",
-  "pdco_phase": "DEVELOPMENT",
-  "active_skill": "03-development",
-  "sdlc_stage": "implementation",
+  "pdco_phase": "OPERATIONS",
+  "active_skill": "05-maintenance",
+  "sdlc_stage": "maintenance",
   "last_updated": "2026-08-31",
   "author": "Adán Y. Sánchez Cubillos",
   "role": "Programador Junior Certificado · Estudiante de Ingeniería de Software y Ciencia de Datos (Universidad de La Salle)",
@@ -27,8 +27,29 @@
     "SIPTA — DataJam Alcaldía Mayor de Bogotá (Data Olinguitos Gen)",
     "Sistema Predictivo Telecom — CGI Global / Universidad de Tokio (Japón)",
     "Pipeline ETL Data Wrangling Bogotá (BPMN 2.0 & Clean Architecture)",
-    "Inferencia Estadística & Mercado Laboral (scipy.stats & CRISP-DM)",
+    "Producción Científica DataJam (4 Artículos con DOI y Marco OCDE/JRC)",
     "Sistemas Empresariales en Java (POO & JUnit 5)",
     "Soluciones en Power BI (Modelado Dimensional Star Schema)"
+  ],
+  "artifacts": [
+    "docs/01-requirements/requirements.md",
+    "docs/01-requirements/use-cases.md",
+    "docs/01-requirements/entity-map.md",
+    "docs/01-requirements/diagrams/use-case-diagram.md",
+    "docs/01-requirements/diagrams/activity-diagram.md",
+    "docs/02-architecture/architecture.md",
+    "docs/02-architecture/patterns.md",
+    "docs/02-architecture/ADR/ADR-001.md",
+    "docs/02-architecture/ADR/ADR-002.md",
+    "docs/02-architecture/ADR/ADR-003.md",
+    "docs/02-architecture/diagrams/class-diagram.md",
+    "docs/02-architecture/diagrams/sequence-diagram.md",
+    "docs/02-architecture/diagrams/component-diagram.md",
+    "docs/03-development/dev-log.md",
+    "docs/03-development/api-docs.md",
+    "docs/04-testing/test-plan.md",
+    "docs/04-testing/test-results.md",
+    "docs/05-maintenance/changelog.md",
+    "docs/05-maintenance/refactoring-log.md"
   ]
 }

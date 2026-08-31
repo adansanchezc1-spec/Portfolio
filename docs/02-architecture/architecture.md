@@ -1,66 +1,52 @@
-# Documento de Arquitectura de Software e Interacción (ISO 9241 / ISO 25010)
-**Proyecto**: Portafolio Web Profesional e IHC — Adán Sánchez  
-**Versión**: 1.0.0  
-**Fecha**: 2026-08-31  
-**Fase PDCO**: PLAN $\rightarrow$ DEVELOPMENT  
-**Estilo Arquitectónico**: Single Page Application (SPA) Modular y Reactiva Orientada a Componentes  
+# Documento de Arquitectura de Software (SWEBOK v3 / ISO 42010)
+**Proyecto**: Portafolio Web Profesional de Alto Impacto e IHC  
+**Autor**: Adán Y. Sánchez Cubillos  
+**Versión**: 1.1.0  
+**Fase PDCO**: DEVELOPMENT  
+**Estilo Arquitectónico**: MVC en Cliente + Arquitectura Orientada a Eventos (Single Page Application sin dependencias)  
 
 ---
 
-## 1. Visión General de Arquitectura
+## 1. Visión General del Sistema
+La arquitectura del portafolio está estructurada para entregar máxima velocidad de renderizado, accesibilidad estricta (WCAG 2.1 AA) e interacción humano-computador (IHC) fluida mediante una separación limpia entre **Modelo** (`projects-data.js`), **Controlador Reactivo** (`app.js`) y **Capa de Presentación** (`index.html` + `style.css`).
 
-La arquitectura del portafolio se concibe bajo el paradigma de **Desacoplamiento Estricto**, separando completamente:
-1. **Capa de Presentación (HTML5 Semántico)**: Estructura accesible, jerarquía de encabezados (`<h1>`-`<h6>`), landmarks de accesibilidad (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`).
-2. **Capa de Diseño y Experiencia Visual (CSS3 Moderno por Tokens)**: Sistema de diseño atómico basado en variables CSS (`:root`), efectos de *Dark Glassmorphism* con `backdrop-filter`, sistema de rejilla `CSS Grid` y `Flexbox` fluidos, y animaciones aceleradas por hardware.
-3. **Capa de Modelo y Datos (JavaScript ES6+)**: Catálogo de proyectos (`projects-data.js`) estructurado como un almacén inmutable de objetos tipados con metadatos de ingeniería.
-4. **Capa de Controladores y Comportamiento (`app.js`)**: Manejadores de eventos desacoplados para filtrado dinámico, gestión de modales accesibles (Focus Trap, tecla ESC), scroll suave, contadores numéricos interactivos y feedback visual inmediato.
-
----
-
-## 2. Diagrama de Componentes del Portafolio
-
-```mermaid
-graph TB
-    subgraph Capa_Presentacion ["Capa de Presentación (HTML5 + CSS Tokens)"]
-        NAV[Navbar & Theme Switcher]
-        HERO[Hero Section & Metric Badges]
-        ABOUT[About & Engineering Philosophy]
-        SKILLS[Skills Matrix & Standards Tabs]
-        PROJECTS[Projects Showcase Grid]
-        STATS[Statistical Research Dashboard]
-        PDCO_FLOW[PDCO Methodology Timeline]
-        MODAL[Accessible Modal Viewport]
-        CONTACT[Contact & Social Channels]
-    end
-
-    subgraph Capa_Logica ["Capa Lógica & Controladores (JS ES6+)"]
-        APP_CTRL[PortfolioApp Controller]
-        FILTER_CTRL[FilterEngine]
-        MODAL_CTRL[ModalManager]
-        SCROLL_CTRL[ScrollSpy & Animations]
-        DATA_STORE[ProjectsData Repository]
-    end
-
-    NAV --> APP_CTRL
-    PROJECTS --> FILTER_CTRL
-    FILTER_CTRL --> DATA_STORE
-    PROJECTS --> MODAL_CTRL
-    MODAL_CTRL --> DATA_STORE
-    MODAL_CTRL --> MODAL
-    HERO --> SCROLL_CTRL
-    STATS --> DATA_STORE
+```
+┌─────────────────────────────────────────────────────────────┐
+│                 ARQUITECTURA DEL SISTEMA                    │
+├─────────────────────────────────────────────────────────────┤
+│  CAPA DE VISTA (index.html + style.css)                     │
+│  - Dark Glassmorphism, CSS Custom Properties, GPU Keyframes │
+│  - Semántica HTML5 (nav, section, article, table, footer)    │
+├─────────────────────────────────────────────────────────────┤
+│  CAPA CONTROLADORA (js/app.js)                              │
+│  - ScrollSpy & Event Listeners                              │
+│  - Renderizador de Proyectos & Artículos Científicos        │
+│  - Gestor de Modales Accesibles con Focus Trap              │
+│  - Simulador Interactivo de Etapas Territoriales SIPTA      │
+├─────────────────────────────────────────────────────────────┤
+│  CAPA DE DATOS / MODELO (js/projects-data.js)               │
+│  - PROJECTS_DATA (Catálogo de Proyectos & Métricas)         │
+│  - RESEARCH_PAPERS_DATA (4 Artículos DataJam & DOIs)        │
+│  - SKILLS_DATA (Matriz de Habilidades)                      │
+│  - SIPTA_STAGE_DETAILS (Payloads de Simulación Territorial) │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 3. Decisiones Arquitectónicas (ADR)
+## 2. Decisiones de Arquitectura (ADR)
+| ID | Decisión | Alternativas Evaluadas | Justificación Técnica |
+|---|---|---|---|
+| **AD-001** | Vanilla CSS/JS Modular | React, Next.js, Vue, Tailwind | Cero sobrecarga de bundle, FCP $< 0.8\text{s}$, 100% interoperabilidad en GitHub Pages / servidores estáticos. |
+| **AD-002** | Enlace Dinámico a Repositorios GitHub | iFrames embebidos | Seguridad contra clickjacking (X-Frame-Options), mejor rendimiento móvil y trazabilidad directa en GitHub. |
+| **AD-003** | Generador Dinámico de Citas BibTeX | Descarga de archivos .bib | Copiado instantáneo mediante la API nativa `navigator.clipboard` sin interrupción de flujo de lectura. |
 
-### ADR-001: Adopción de Vanilla Stack (HTML5 + CSS3 Variables + ES6)
-- **Contexto**: Se requiere máxima velocidad de carga, control estético milimétrico sin restricciones de librerías CSS predeterminadas y cero dependencias de compilación.
-- **Decisión**: Utilizar JavaScript nativo modular y CSS con tokens propios de diseño.
-- **Consecuencias**: Rendimiento extremo (100 en Lighthouse), longevidad del código y compatibilidad universal.
+---
 
-### ADR-002: Almacén de Datos Centralizado de Proyectos (`projects-data.js`)
-- **Contexto**: Mantener la información técnica de los proyectos (arquitectura, patrones, métricas, enlaces) desacoplada de la plantilla HTML.
-- **Decisión**: Definir los proyectos como una estructura inmutable que el motor de renderizado inyecta dinámicamente.
-- **Consecuencias**: Facilidad de mantenimiento, escalabilidad para agregar nuevos proyectos y soporte para búsqueda/filtrado instantáneo.
+## 3. Principios SOLID Aplicados en el Código JavaScript
+
+- **S (Single Responsibility Principle)**: Cada función de `app.js` cumple un único propósito (`renderProjects`, `renderResearchPapers`, `initSiptaViewer`, `openProjectModal`).
+- **O (Open/Closed Principle)**: Para agregar nuevos proyectos o artículos científicos, solo se extiende el array de datos en `projects-data.js` sin modificar la lógica del renderizador.
+- **L (Liskov Substitution Principle)**: Todas las tarjetas y modales manejan interfaces de datos homogéneas (`id`, `title`, `metrics`, `links`).
+- **I (Interface Segregation Principle)**: Las funciones de renderizado solo consumen las propiedades que necesitan para el componente específico.
+- **D (Dependency Inversion Principle)**: El controlador `app.js` interactúa con abstracciones de datos y no con lógica fuertemente acoplada al almacenamiento.

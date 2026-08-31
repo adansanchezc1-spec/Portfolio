@@ -1,30 +1,29 @@
-# Catálogo de Patrones de Diseño e IHC Aplicados
-**Proyecto**: Portafolio Web Profesional e IHC — Adán Sánchez  
-**Fase PDCO**: PLAN $\rightarrow$ DEVELOPMENT  
+# Catálogo de Patrones de Diseño Aplicados (GoF & GRASP)
+**Proyecto**: Portafolio Web Profesional e IHC  
+**Fase PDCO**: DEVELOPMENT  
 
 ---
 
-## 1. Patrones de Diseño de Software (GoF & GRASP)
+## 1. Patrones GoF Aplicados
 
-| Patrón | Tipo | Componente | Justificación / Problema que Resuelve |
-|---|---|---|---|
-| **Module / Namespace Pattern** | Arquitectónico JS | `PortfolioApp` (`app.js`) | Encapsula el estado de la aplicación, evitando contaminación del `window` global. |
-| **Repository Pattern** | GRASP | `ProjectsRepository` | Centraliza el acceso y consulta estructurada sobre la colección de proyectos. |
-| **Observer / Event-Driven** | GoF Comportamiento | `FilterEngine` & `ScrollSpy` | Desacopla la emisión de eventos de usuario (clicks en filtros, scroll) de la actualización visual del DOM. |
-| **Strategy Pattern** | GoF Comportamiento | `FilterStrategy` | Aplica diferentes criterios de filtrado (por categoría, búsqueda textual, ordenamiento por relevancia). |
-| **Singleton / Shared Instance** | GoF Creacional | `ModalManager` | Garantiza una única instancia activa del modal de detalles con control de foco accesible. |
+### 1.1 Observer / Event Listener Pattern (Comportamiento)
+- **Implementación**: Suscripción de eventos a botones de filtro, tarjetas de etapas del visor territorial y enlaces de navegación.
+- **Beneficio**: Desacoplamiento completo entre el disparador de la acción y la actualización del DOM.
+
+### 1.2 Strategy Pattern (Comportamiento)
+- **Implementación**: Algoritmo de filtrado de proyectos basado en predicados de categoría dinámicos (`all`, `data-science`, `machine-learning`, etc.).
+- **Beneficio**: Intercambio fluido de criterios de selección sin alterar la grilla de renderizado.
+
+### 1.3 Facade Pattern (Estructural)
+- **Implementación**: Función `openProjectModal(projectId)` y `showToast(message)` que encapsulan la manipulación compleja del DOM, accesibilidad y temporizadores en llamadas simples de una sola línea.
+
+### 1.4 Template Method (Comportamiento)
+- **Implementación**: Estructura homogénea de renderizado de tarjetas en `renderProjects()` y `renderResearchPapers()` (encabezado, cuerpo, métricas, acciones de footer).
 
 ---
 
-## 2. Patrones de Interacción Humano-Computador (IHC & UI/UX)
+## 2. Patrones GRASP Aplicados
 
-1. **Card Grid with Progressive Disclosure (Descubrimiento Progresivo)**:
-   - La tarjeta muestra título, subtítulo, badges tecnológicos y métricas de impacto principales.
-   - El detalle profundo (diagrama de arquitectura, flujo BPMN, justificación técnica) se revela a demanda mediante el modal interactivo, reduciendo la carga cognitiva inicial (Cognitive Load Reduction).
-2. **Direct Feedback & Micro-Interactions**:
-   - Efectos de elevación e iluminación sutil (*Glow border & Box-shadow*) al pasar el cursor sobre las tarjetas interactivas.
-   - Indicador visual de copiado exitoso al interactuar con el email de contacto.
-3. **Responsive Navigation & ScrollSpy**:
-   - La barra de navegación superior fija (*Sticky Glassmorphism Nav*) resalta automáticamente la sección activa en el viewport.
-4. **Dark Mode & Contrast Compliance (WCAG AA)**:
-   - Paleta de fondos oscuros con luminosidad calibrada para prevenir fatiga visual y mantener ratios de contraste superiores a $7:1$ en títulos y $4.5:1$ en texto de cuerpo.
+- **Information Expert**: El objeto `projects-data.js` centraliza la información de cada entidad para que el controlador no deba deducir atributos inexistentes.
+- **Low Coupling & High Cohesion**: Las funciones de UI están agrupadas temáticamente y no interactúan directamente con el estado global de otros componentes.
+- **Controller**: `app.js` actúa como el controlador mediador entre las acciones del usuario y los cambios de vista.

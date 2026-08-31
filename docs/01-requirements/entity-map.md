@@ -1,70 +1,70 @@
-# Mapa de Entidades y Modelo Conceptual
-**Proyecto**: Portafolio Web Profesional e IHC — Adán Sánchez  
-**Fase PDCO**: PLAN $\rightarrow$ DEVELOPMENT  
+# Mapa de Entidades del Dominio (IEEE 830 / ISO 29148)
+**Proyecto**: Portafolio Web Profesional e IHC  
+**Autor**: Adán Y. Sánchez Cubillos  
+**Versión**: 1.1.0  
+**Fase PDCO**: PLAN  
 
 ---
 
-## 1. Diagrama Entidad-Relación Conceptual (Mermaid)
+## 1. Entidades Principales
 
 ```mermaid
 erDiagram
-    PROFILE ||--o{ PROJECT : "presenta"
-    PROFILE ||--o{ SKILL_GROUP : "domina"
-    PROFILE ||--o{ RESEARCH_STUDY : "publica"
-    PROJECT ||--o{ TECH_TAG : "utiliza"
-    PROJECT ||--o{ ARCHITECTURE_PATTERN : "implementa"
-    PROJECT ||--o{ METRIC : "evidencia"
-    RESEARCH_STUDY ||--o{ STATISTICAL_TEST : "incluye"
+    PERFIL ||--o{ PROYECTO : "desarrolla"
+    PERFIL ||--o{ ARTICULO_CIENTIFICO : "escribe"
+    PERFIL ||--o{ HABILIDAD_GRUPO : "domina"
+    PROYECTO ||--o{ METRICA : "posee"
+    PROYECTO ||--o{ LINK_EXTERNO : "enlaza"
+    ARTICULO_CIENTIFICO ||--o{ FORMATO_DISPONIBLE : "ofrece"
+    VISOR_TERRITORIAL ||--|{ ETAPA_PIPELINE : "contiene"
 
-    PROFILE {
-        string full_name
-        string headline
-        string location
-        string email
-        string linkedin_url
-        string github_url
-        string bio_summary
+    PERFIL {
+        string nombre
+        string rol_principal
+        string titulacion
+        string email_oficial
+        string institucion
     }
 
-    PROJECT {
+    PROYECTO {
         string id
-        string title
-        string category
-        string subtitle
-        string problem_solved
-        string architecture_type
-        string github_url
-        string live_demo_url
-        string gdrive_url
+        string titulo
+        string subtitulo
+        string categoria
+        string planteamiento_problema
+        string solucion_tecnica
     }
 
-    METRIC {
-        string label
-        string value
-        string context
+    ARTICULO_CIENTIFICO {
+        string id
+        string numero_paper
+        string titulo
+        string revista
+        string doi
+        string abstract
+        string badge_metodologico
     }
 
-    SKILL_GROUP {
-        string category_name
-        string description
-        string[] skills
-    }
-
-    STATISTICAL_TEST {
-        string test_name
-        string variable
-        string statistic
-        string p_value
-        string conclusion
+    ETAPA_PIPELINE {
+        string id_etapa
+        string nombre
+        string descripcion_corta
+        string payload_simulado
     }
 ```
 
 ---
 
-## 2. Descripción de Entidades Principales
+## 2. Definición de Atributos y Reglas de Integridad
 
-1. **Profile (Perfil Profesional)**: Contiene la identidad, propuesta de valor, biografía y canales de contacto de Adán Sánchez.
-2. **Project (Proyecto Técnico)**: Representa los entregables mayores de software y ciencia de datos (SIPTA, Data Wrangling Bogotá, Dashboards Power BI, Java Enterprise).
-3. **Metric (Métricas de Calidad e Impacto)**: Cuantificación verificable de resultados (volumen de datos, pruebas estadísticas, cobertura de código).
-4. **SkillGroup (Grupo de Competencias)**: Clasificación de habilidades por disciplina (Data Science, Software Engineering, BI, IHC/UX).
-5. **StatisticalTest (Pruebas de Inferencia)**: Registro de rigurosidad estadística en estudios empíricos.
+### 2.1 Entidad `ArticuloCientifico`
+- `id`: Identificador único tipo string kebab-case (`paper-ipt-ocde`, `paper-moran-lisa`).
+- `doi`: Identificador de objeto digital válido (formato `10.1016/...` o `10.1186/...`).
+- `abstract`: Resumen científico no anémico con descripción del problema y aporte econométrico.
+- `formats`: Lista de formatos soportados (`PDF`, `LaTeX`, `Typst`, `Markdown`, `BibTeX`).
+
+### 2.2 Entidad `Proyecto`
+- `id`: Identificador único.
+- `metrics`: Colección de métricas auditadas con valor cuantitativo, etiqueta y descripción.
+- `architecture`: Especificación de arquitectura y pasos del diagrama.
+- `technologies`: Lista de lenguajes y librerías comprobadas.
