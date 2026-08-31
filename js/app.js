@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   renderProjects('all');
   renderSkillsTab('coreLanguages');
-  renderStatsTable();
   renderResearchPapers();
   initFilterButtons();
   initSkillsTabs();
@@ -209,31 +208,7 @@ function initSkillsTabs() {
 }
 
 /* --------------------------------------------------------------------------
-   4. STATISTICAL RESEARCH TABLE
-   -------------------------------------------------------------------------- */
-function renderStatsTable() {
-  const tbody = document.getElementById('statsTableBody');
-  if (!tbody) return;
-
-  tbody.innerHTML = '';
-  STATS_RESEARCH_DATA.forEach(row => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="test-name">
-        <span>${row.test}</span>
-        <span class="badge badge-cyan" style="font-size: 0.7rem; padding: 2px 8px;">${row.badge}</span>
-      </td>
-      <td>${row.variable}</td>
-      <td class="test-statistic">${row.statistic}</td>
-      <td class="test-pvalue">${row.pValue}</td>
-      <td style="color: var(--text-muted); font-size: 0.88rem;">${row.conclusion}</td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4.1 RESEARCH PAPERS RENDERER (DATAJAM SCIENTIFIC PAPERS)
+   4. RESEARCH PAPERS RENDERER (DATAJAM SCIENTIFIC PAPERS)
    -------------------------------------------------------------------------- */
 function renderResearchPapers() {
   const container = document.getElementById('researchPapersGrid');
