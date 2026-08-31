@@ -1,0 +1,34 @@
+{
+  "project": "Adan-Sanchez-Portfolio-IHC",
+  "version": "1.1.0",
+  "pdco_phase": "DEVELOPMENT",
+  "active_skill": "03-development",
+  "sdlc_stage": "implementation",
+  "last_updated": "2026-08-31",
+  "author": "Adán Y. Sánchez Cubillos",
+  "role": "Programador Junior Certificado · Estudiante de Ingeniería (Universidad de La Salle)",
+  "email": "adansanchez@hotmail.com",
+  "core_competencies": [
+    "Java",
+    "Python",
+    "R",
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "SciPy",
+    "Scikit-Learn",
+    "SOLID Principles",
+    "Clean Architecture",
+    "BPMN 2.0 (Ingeniería de Procesos)",
+    "Gestión de Proyectos",
+    "Inferencia Estadística"
+  ],
+  "featured_projects": [
+    "SIPTA — DataJam Alcaldía Mayor de Bogotá (Data Olinguitos Gen)",
+    "Sistema Predictivo Telecom — CGI Global / Universidad de Tokio (Japón)",
+    "Pipeline ETL Data Wrangling Bogotá (BPMN 2.0 & Clean Architecture)",
+    "Inferencia Estadística & Mercado Laboral (scipy.stats & CRISP-DM)",
+    "Sistemas Empresariales en Java (POO & JUnit 5)",
+    "Soluciones en Power BI (Modelado Dimensional Star Schema)"
+  ]
+}
