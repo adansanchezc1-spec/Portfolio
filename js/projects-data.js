@@ -1,7 +1,7 @@
 /**
  * Catálogo Enriquecido de Proyectos de Ingeniería, Machine Learning y Ciencia de Datos
  * Autor: Adán Y. Sánchez Cubillos
- * Perfil: Estudiante de Ingeniería · Programador Junior Certificado (Universidad de La Salle)
+ * Perfil: Estudiante de Ingeniería de Software & Ciencia de Datos · Programador Junior Certificado (Universidad de La Salle)
  * Core: Java, Python, R | Pandas, NumPy, Matplotlib, SciPy | Arquitectura SOLID & Procesos BPMN
  */
 

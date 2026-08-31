@@ -1,6 +1,6 @@
 # ⚡ Portafolio Profesional e IHC — Adán Y. Sánchez Cubillos
 > **Software Engineering, Machine Learning & Data Science**  
-> *Estudiante de Ingeniería & Programador Junior Certificado (Universidad de La Salle)*
+> *Estudiante de Ingeniería de Software & Ciencia de Datos · Programador Junior Certificado (Universidad de La Salle)*
 
 [![GitHub Profile](https://img.shields.io/badge/GitHub-adansanchezc1--spec-181717?logo=github)](https://github.com/adansanchezc1-spec)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Adán%20Sánchez-0A66C2?logo=linkedin)](https://www.linkedin.com/in/adan-sanchez-ba1931398/)
