@@ -342,63 +342,74 @@
         </table>
       </div>
 
-      <!-- VISOR INTERACTIVO: PIPELINE DATA WRANGLING & BPMN 2.0 -->
-      <div class="wrangling-viewer-box" id="visor-data-wrangling">
+      <!-- VISOR INTERACTIVO: PLATAFORMA TERRITORIAL SIPTA (DATA OLINGUITOS GEN - ALCALDÍA DE BOGOTÁ) -->
+      <div class="wrangling-viewer-box" id="visor-sipta-olinguitos">
         <div class="viewer-header-bar">
           <div>
-            <span class="badge badge-cyan">Visor de Arquitectura & Pipeline</span>
-            <h3 style="margin-top: 6px; font-size: 1.4rem;">Sistema Data Wrangling — Flujo de Decisión BPMN 2.0</h3>
+            <span class="badge badge-cyan">Visor Territorial & Pipeline Multicriterio</span>
+            <h3 style="margin-top: 6px; font-size: 1.4rem;">SIPTA — DataJam Alcaldía Mayor de Bogotá (Data Olinguitos Gen)</h3>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 4px;">
-              Inspecciona interactivamente cada compuerta lógica (XOR) del pipeline ETL inmobiliario en Python.
+              Explora las 5 etapas del pipeline de priorización territorial (IPT bajo OCDE/JRC) sobre +1.04M de microdatos del PUA SDIS.
             </p>
           </div>
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button class="btn btn-secondary btn-sm" onclick="openProjectModal('data-wrangling-bogota')">
+            <button class="btn btn-secondary btn-sm" onclick="openProjectModal('sipta-datajam-alcaldia')">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
               Ficha Técnica Completa
             </button>
-            <a href="https://github.com/adansanchezc1-spec/ProyectoDataWrangling" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen/blob/main/reports/dashboard_geografico_sipta.html" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Ver Dashboard Web GIS
+            </a>
+            <a href="https://github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-              Ver Repositorio GitHub
+              Repositorio GitHub
             </a>
           </div>
         </div>
 
-        <!-- Interactive Gateway Track -->
+        <!-- Interactive Stage Track -->
         <div class="bpmn-interactive-track" role="tablist">
-          <div class="bpmn-gateway-card active" data-gateway="g1" role="tab" tabindex="0">
-            <span class="bpmn-gateway-badge">Gateway 1</span>
-            <h4 class="gateway-title">Extracción de Fuentes</h4>
-            <p class="gateway-detail-text">Ingesta multi-formato (CSV, XLSX, JSON) y chequeo de permisos.</p>
+          <div class="bpmn-gateway-card sipta-stage-card active" data-stage="s1" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Etapa 1</span>
+            <h4 class="gateway-title">Ingesta PUA SDIS</h4>
+            <p class="gateway-detail-text">+1.04M microdatos, 13 dominios y 111 variables.</p>
           </div>
 
-          <div class="bpmn-gateway-card" data-gateway="g2" role="tab" tabindex="0">
-            <span class="bpmn-gateway-badge">Gateway 2</span>
-            <h4 class="gateway-title">Contrato de Esquema</h4>
-            <p class="gateway-detail-text">Validación de columnas obligatorias y tipado estricto.</p>
+          <div class="bpmn-gateway-card sipta-stage-card" data-stage="s2" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Etapa 2</span>
+            <h4 class="gateway-title">Homologación Zonal</h4>
+            <p class="gateway-detail-text">Mapeo a 20 localidades oficiales DIVIPOLA.</p>
           </div>
 
-          <div class="bpmn-gateway-card" data-gateway="g3" role="tab" tabindex="0">
-            <span class="bpmn-gateway-badge">Gateway 3</span>
-            <h4 class="gateway-title">Limpieza & Deduplicación</h4>
-            <p class="gateway-detail-text">Imputación por medianas, estrato [1-6] y hash único.</p>
+          <div class="bpmn-gateway-card sipta-stage-card" data-stage="s3" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Etapa 3</span>
+            <h4 class="gateway-title">Modelado IPT</h4>
+            <p class="gateway-detail-text">Normalización Min-Max y agregación OCDE/JRC.</p>
           </div>
 
-          <div class="bpmn-gateway-card" data-gateway="g4" role="tab" tabindex="0">
-            <span class="bpmn-gateway-badge">Gateway 4</span>
-            <h4 class="gateway-title">Calidad & Persistencia</h4>
-            <p class="gateway-detail-text">Feature engineering temporal y carga a Master Data (MDM).</p>
+          <div class="bpmn-gateway-card sipta-stage-card" data-stage="s4" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Etapa 4</span>
+            <h4 class="gateway-title">Auditoría Espacial</h4>
+            <p class="gateway-detail-text">VIF 3.21, Moran's I 0.412 y Bootstrap B=1.000.</p>
+          </div>
+
+          <div class="bpmn-gateway-card sipta-stage-card" data-stage="s5" role="tab" tabindex="0">
+            <span class="bpmn-gateway-badge">Etapa 5</span>
+            <h4 class="gateway-title">Visor Web GIS</h4>
+            <p class="gateway-detail-text">Dashboard interactivo coroplético en Leaflet.js.</p>
           </div>
         </div>
 
         <!-- Dynamic Terminal Simulation -->
         <div class="viewer-terminal-preview" id="viewerTerminalPreview">
-[BPMN 2.0 GATEWAY 1: EXTRACCIÓN Y VALIDACIÓN DE FUENTES]
+[ETAPA 1: INGESTA DE MICRODATOS MULTI-INSTITUCIONALES]
 -------------------------------------------------------------
-* Archivos Soportados: CSV, XLSX, JSON (Inmuebles Bogotá D.C.)
-* Verificación: Integridad física, formato de lectura y permisos.
-* Regla XOR: Si el archivo está corrupto -> Rechazo inmediato con log estructurado.
-* Salida: Raw Storage Buffer validado (0 fallos de extracción).
+* Fuente Primaria: PUA SDIS 2024 (+1.048.575 microdatos anonimizados).
+* Proyecciones Poblacionales: DANE / SDP a 2025 (8.101.412 habitantes).
+* Entidades Vinculadas: REPS, SED, MEBOG, EAAB, Secretaría de Salud.
+* Cobertura: 13 dominios sectoriales y 111 variables territoriales homologadas.
+* Formato: Ingestion Manifest estructurado con validación ISO/IEC 25010.
         </div>
       </div>
 

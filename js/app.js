@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModalListeners();
   initContactForm();
   initScrollAnimations();
-  initBpmnViewer();
+  initSiptaViewer();
 });
 
 /* --------------------------------------------------------------------------
@@ -437,39 +437,48 @@ function initScrollAnimations() {
 }
 
 /* --------------------------------------------------------------------------
-   8. INTERACTIVE BPMN VISUALIZER (DATA WRANGLING VIEWER)
+   8. INTERACTIVE SIPTA WEB GIS VISUALIZER (DATA OLINGUITOS GEN)
    -------------------------------------------------------------------------- */
-const BPMN_GATEWAY_DETAILS = {
-  g1: `[BPMN 2.0 GATEWAY 1: EXTRACCIÓN Y VALIDACIÓN DE FUENTES]
+const SIPTA_STAGE_DETAILS = {
+  s1: `[ETAPA 1: INGESTA DE MICRODATOS MULTI-INSTITUCIONALES]
 -------------------------------------------------------------
-* Archivos Soportados: CSV, XLSX, JSON (Inmuebles Bogotá D.C.)
-* Verificación: Integridad física, formato de lectura y permisos.
-* Regla XOR: Si el archivo está corrupto -> Rechazo inmediato con log estructurado.
-* Salida: Raw Storage Buffer validado (0 fallos de extracción).`,
+* Fuente Primaria: PUA SDIS 2024 (+1.048.575 microdatos anonimizados).
+* Proyecciones Poblacionales: DANE / SDP a 2025 (8.101.412 habitantes).
+* Entidades Vinculadas: REPS, SED, MEBOG, EAAB, Secretaría de Salud.
+* Cobertura: 13 dominios sectoriales y 111 variables territoriales homologadas.
+* Formato: Ingestion Manifest estructurado con validación ISO/IEC 25010.`,
 
-  g2: `[BPMN 2.0 GATEWAY 2: ESTRUCTURA Y CONTRATO DE ESQUEMA]
+  s2: `[ETAPA 2: HOMOLOGACIÓN TERRITORIAL & DIVIPOLA BOGOTÁ]
 -------------------------------------------------------------
-* Columnas Requeridas: 'precio', 'area', 'estrato', 'habitaciones', 'banos', 'zona'
-* Regla XOR: Comprobación de tipos (float/int). Si faltan columnas maestras -> Enrutamiento a Rejection Log.
-* Salida: DataFrame estructurado con esquema homologado.`,
+* Mapeo Geoespacial: 20 Localidades oficiales de Bogotá D.C.
+* Uniones Espaciales: Spatial Joins precisos sobre geometrías GeoJSON.
+* Normalización de Esquemas: Resolución de discrepancias toponímicas.
+* Control de Calidad: 100% de registros enmarcados en el dominio distrital.`,
 
-  g3: `[BPMN 2.0 GATEWAY 3: LIMPIEZA, NORMALIZACIÓN Y DEDUPLICACIÓN]
+  s3: `[ETAPA 3: MODELADO DEL ÍNDICE IPT COMPUESTO (OCDE/JRC)]
 -------------------------------------------------------------
-* Tratamiento de Nulos: Imputación no paramétrica por medianas robustas.
-* Filtros de Negocio: Estrato en rango válido [1 - 6], áreas positivas (> 10 m2).
-* Deduplicación: Algoritmo de hash multidimensional (0 registros duplicados).
-* Salida: Dataset saneado bajo calidad ISO/IEC 25010.`,
+* Estandarización: Normalización Min-Max según polaridad (+ / -) del indicador.
+* Agregación No Compensatoria: Ponderación lineal y geométrica multivariada.
+* Sub-índices Calculados: Vulnerabilidad Social vs. Capacidad de Respuesta.
+* Resultado: Índice de Priorización Territorial (IPT) para asignación óptima de inversión.`,
 
-  g4: `[BPMN 2.0 GATEWAY 4: CALIDAD SEMÁNTICA & FEATURE ENGINEERING]
+  s4: `[ETAPA 4: AUDITORÍA ESTADÍSTICA & INFERENCIA ESPACIAL]
 -------------------------------------------------------------
-* Features Generadas: 'precio_unitario' ($/m2), 'puntaje_entorno', 'densidad_comercial'.
-* Regla XOR: Detección de outliers mediante rango intercuartílico (IQR).
-* Persistencia: Carga automatizada a Tabla Maestra (MDM) + Notificaciones decoradas.
-* Tests Unitarios: 46 pruebas en Pytest ejecutadas exitosamente (100% passed).`
+* Diagnóstico de Multicolinealidad: VIF promedio = 3.21 (< 10.0, sin colinealidad).
+* Autocorrelación Espacial: Moran's I = 0.412 (p = 0.008, clustering significativo).
+* Simulación de Incertidumbre: B = 1.000 réplicas Bootstrap Dirichlet con IC 95%.
+* Validación: Robustez estadística verificada en scipy.stats y GeoPandas.`,
+
+  s5: `[ETAPA 5: VISOR WEB GIS INTERACTIVO (LEAFLET.JS & CHART.JS)]
+-------------------------------------------------------------
+* Cartografía Dinámica: Mapas coropléticos por localidad con escalas de calor.
+* Métricas en Vivo: Tooltips interactivos, tablas de ranking y filtros por sector.
+* Arquitectura: SPA autónoma, ligera y accesible sin dependencias pesadas.
+* Repositorio GitHub: github.com/adansanchezc1-spec/DataJam_DataOlinguitos_Gen`
 };
 
-function initBpmnViewer() {
-  const cards = document.querySelectorAll('.bpmn-gateway-card');
+function initSiptaViewer() {
+  const cards = document.querySelectorAll('.sipta-stage-card');
   const preview = document.getElementById('viewerTerminalPreview');
   if (!cards.length || !preview) return;
 
@@ -477,11 +486,12 @@ function initBpmnViewer() {
     card.addEventListener('click', () => {
       cards.forEach(c => c.classList.remove('active'));
       card.classList.add('active');
-      const gatewayKey = card.getAttribute('data-gateway');
-      if (BPMN_GATEWAY_DETAILS[gatewayKey]) {
-        preview.textContent = BPMN_GATEWAY_DETAILS[gatewayKey];
+      const stageKey = card.getAttribute('data-stage');
+      if (SIPTA_STAGE_DETAILS[stageKey]) {
+        preview.textContent = SIPTA_STAGE_DETAILS[stageKey];
       }
     });
   });
 }
+
 
