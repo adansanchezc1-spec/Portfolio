@@ -67,6 +67,17 @@ class TestPortfolioIntegrity(unittest.TestCase):
             js_content = f.read()
         self.assertNotIn("drive.google.com", js_content, "projects-data.js aún contiene enlaces a Google Drive")
 
+    def test_no_folder_icons_in_portfolio(self):
+        """Valida que no existan iconos de carpeta SVG en el HTML ni en el renderizador JS."""
+        folder_svg_path = "M22 19a2 2 0 01-2 2"
+        with open(INDEX_HTML, "r", encoding="utf-8") as f:
+            html_content = f.read()
+        self.assertNotIn(folder_svg_path, html_content, "index.html aún contiene iconos de carpeta")
+
+        with open(APP_JS, "r", encoding="utf-8") as f:
+            js_content = f.read()
+        self.assertNotIn(folder_svg_path, js_content, "app.js aún contiene iconos de carpeta")
+
     def test_projects_data_js_integrity(self):
         """Valida que projects-data.js contenga los proyectos clave y configuraciones."""
         self.assertTrue(os.path.exists(PROJECTS_DATA_JS), "js/projects-data.js no existe")
